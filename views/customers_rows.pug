@@ -1,0 +1,10 @@
+each customer, idx in customer_list
+    tr(data-customer-id=customer.id)
+        th(scope="row") !{idx+1}
+        td !{customer.name}
+        td !{moment(customer.date_of_birth).format('LL')}
+        td !{customer.gender}
+        td !{customer.marital_status}
+        td !{customer.contact.email || ''}
+        td !{customer.contact.phone || ''}
+        td !{customer.address || ''}

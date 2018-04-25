@@ -1,0 +1,54 @@
+extends layout
+
+block navbar
+  form.form-inline.my-2.my-lg-0
+    input#inputSearch.form-control(type="text" placeholder="Quick Search" autofocus="")
+       
+block content
+  i.fa.fa-spinner.fa-spin.d-none(style="font-size:36px;")
+  table.table.table-hover.table-striped.text-left
+    thead.thead-dark
+      tr
+        th(scope="col") #
+        th(scope="col") Name
+        th(scope="col") Date of birth
+        th(scope="col") Gender
+        th(scope="col") Status
+        th(scope="col") Email
+        th(scope="col") Phone
+        th(scope="col") Address
+          i#multiSearch.clickable.fa.fa-search.float-right
+          i#deleteSelectedItem.clickable.fa.fa-trash-o.float-right.d-none
+          i#clearSelectedItem.clickable.fa.fa-refresh.float-right.mr-2.d-none
+    tbody
+      tr#rowForInput.d-none
+        td(scope="row")
+          i#clearInput.clickable.fa.fa-refresh
+        td(scope="row")
+          input#name.form-control(type='text')
+        td(scope="row")
+          //- input#date_of_birth.form-control(type='text')(style='width: 80px')
+        td(scope="row")
+          select#gender.form-control(style='width: 98px')
+            option(value='')
+            option(value='male') male
+            option(value='female') female
+        td(scope="row")
+          select#marital_status.form-control(style='width: 100px')
+            option(value='')
+            option(value='single') single
+            option(value='married') married
+            option(value='divorced') divorced
+        td(scope="row")
+          input#email.form-control(type='text')(style='width: 160px')
+        td(scope="row")
+          input#phone.form-control(type='text')(style='width: 100px')
+        td(scope="row")
+          input#address.form-control(type='text')
+      include customers_rows.pug
+
+  button#addCustomerBtn.btn.btn-info.fixed-bottom.float-right.mb-5.mr-4.float-button(type='button')
+    i.fa.fa-plus
+
+  script(src='/javascripts/main.js')
+    

@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    
+    block styles
+    
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(src='/javascripts/jquery-3.3.1.min.js')
+    script(src='/javascripts/bootstrap.min.js')
+    script(src='/javascripts/lodash.min.js')
+    script(src='/javascripts/sweetalert2.all.js')
+    
+  body
+    .navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
+      .container
+        a.navbar-brand(href='/') !{navBrand}
+        block navbar
+
+    div(class='container')
+      block content
+
+    block scripts
+    

@@ -1,0 +1,38 @@
+body {
+  padding-top: 80px;
+}
+
+
+table > tbody > tr:not(:first-child) {
+  cursor: pointer;
+}
+
+table > tbody > tr.selected:not(:first-child) {
+  background-color: #FFC900 !important;
+  color: white;
+  font-weight: 500;
+}
+
+
+.fa-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  color: #FFC900;
+}
+
+.fa-search.active {
+  color: #FFC900;
+}
+
+.float-button {
+  left: unset;
+  radius: 50%;
+}
