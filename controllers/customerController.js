@@ -77,7 +77,7 @@ exports.customer_detail = function(req, res) {
 
 // Display Customer create form on GET.
 exports.customer_create_get = function(req, res) {
-    res.render('create_customer', { title: 'Create Customer', navBrand: '<i class="fa fa-arrow-circle-o-left"></i> Create Customer' });
+    res.render('customer_form', { title: 'Create Customer', navBrand: '<i class="fa fa-arrow-circle-o-left"></i> Create Customer' });
 };
 
 // Handle Customer create on POST.
@@ -138,7 +138,7 @@ exports.customer_delete_get = function(req, res) {
 // Handle Customer delete on POST.
 exports.customer_delete_post = function(req, res) {
     console.log(req.params);
-    Customer.findByIdAndRemove(req.params.id, function deleteCustomer(err) {
+    Customer.findByIdAndRemove(req.params.id, function(err) {
         if (err) { return next(err); }
         // Success - go to author list
         res.send('success');
@@ -148,10 +148,18 @@ exports.customer_delete_post = function(req, res) {
 
 // Display Customer update form on GET.
 exports.customer_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Customer update GET');
+    Customer.findById(req.params.id, function (err, customer) {
+        if (err) { return next(err); }
+        // Success - go to author list
+        res.render('customer_form', { title: 'Edit Customer', navBrand: '<i class="fa fa-arrow-circle-o-left"></i> Edit Customer', customer: customer });
+    })
+    
 };
 
 // Handle Customer update on POST.
 exports.customer_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Customer update POST');
+    Customer.findByIdAndUpdate(req.params.id, req.body, function(err, customer) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    })
 };

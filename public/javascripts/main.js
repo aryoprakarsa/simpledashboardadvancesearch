@@ -135,15 +135,14 @@ $( document ).ready(function() {
             }
           })
     })
-    
-    
 
-    $('table > tbody > tr:not(:first-child)').click(function() {
+    $("table > tbody").on("click","tr:not(:first-child)", function(){
+        console.log('row is clicked');
         let customerRow = $('table > tbody > tr');
         let customerId = $(this).data('customer-id');
         if($(this).hasClass('selected')) {
             console.log('redirect to customer view')
-            // window.location = 'customer/' + customerId + '/update';
+            window.location = 'customer/' + customerId + '/update';
         } else {
             customerRow.removeClass('selected');
             $(this).addClass('selected');
@@ -155,4 +154,5 @@ $( document ).ready(function() {
             } 
         }
     });
+
 });
