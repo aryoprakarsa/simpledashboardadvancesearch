@@ -8,13 +8,12 @@ var Customer = require('../models/customer');
 var async = require('async');
 
 
+// Display all customers on homepage
 exports.index = function(req, res) {
     Customer.find({})
     .sort({'_id': -1})
     .exec(function (err, list_customers) {
       if (err) { return next(err); }
-      //Successful, so render
-      console.log(list_customers)
       res.render('index', { title: 'List Customers', navBrand: 'List Customers', customer_list: list_customers });
     });
 
@@ -52,8 +51,8 @@ exports.search = function(req, res) {
     
 };
 
-
-exports.searchMultipleCriteria = function(req, res) {
+// Search customer with multiple filter nase on field
+exports.search_multiple_criteria = function(req, res) {
     Customer.apiQuery(req.query)
     .sort({'_id': -1})
     .exec(function (err, list_customers) {
@@ -63,16 +62,6 @@ exports.searchMultipleCriteria = function(req, res) {
       res.render('customers_rows', { customer_list: list_customers });
     });
     
-};
-
-// Display list of all Customers.
-exports.customer_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Customer list');
-};
-
-// Display detail page for a specific Customer.
-exports.customer_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Customer detail: ' + req.params.id);
 };
 
 // Display Customer create form on GET.
@@ -130,14 +119,8 @@ exports.customer_create_post = function(req, res, next) {
     }
 };
 
-// Display Customer delete form on GET.
-exports.customer_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Customer delete GET');
-};
-
 // Handle Customer delete on POST.
 exports.customer_delete_post = function(req, res) {
-    console.log(req.params);
     Customer.findByIdAndRemove(req.params.id, function(err) {
         if (err) { return next(err); }
         // Success - go to author list
